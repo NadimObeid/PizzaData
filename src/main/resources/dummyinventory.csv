@@ -1,0 +1,11 @@
+Ingredient Name,Type,Price,Weight,Origin,CanCauseAllergy,TypesOfAllergies,Temperature
+Cheese,Classic,8.99,12.5,Italy,No,,2-8°C,25 Dec 2023
+Pepperoni,Meat,10.99,15.0,United States,No, ,-18°C,07 Feb 2025
+Pineapple,Classic,9.99,14.0,Hawaii,No,,,16 Aug 2023
+Tofu,Vegan,12.99,13.5,United States,No,,,29 Nov 2024
+Gluten-Free,Specialty,11.99,12.0,Italy,Yes,Wheat,Room temperature,18 Apr 2023
+Sausage;Onion,Classic,11.99,15.5,Italy,No,,,11 Jul 2025
+Chicken,Meat,13.99,14.5,United States,No,,-18°C,03 Oct 2024
+Shrimp;Calamari;Mussels,Seafood,15.99,16.5,Italy,No,,-18°C,20 Jan 2023
+Mushrooms,Vegetarian,10.99,13.0,United States,No,,,09 Jun 2023
+Eggs;Wheat,Specialty,9.99,12.5,Italy,Yes,Dairy;Eggs;Gluten,2-8°C,14 Sep 2025
