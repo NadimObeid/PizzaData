@@ -19,7 +19,7 @@ public class IngredientReport {
     }
     public String getMostExpensiveIngredient(){
         ArrayList<String> names = new ArrayList<>( ingredientList.stream().collect(Collectors.toMap(
-                n -> n.getPrice()/n.getWeight(), Ingredient::getName,(oldValue, newValue) -> oldValue,TreeMap::new
+                n -> n.getPrice()/n.getWeight(), Ingredient::getName,(oldValue, newValue) -> oldValue+";"+newValue,TreeMap::new
         )).values());
         return names.get(names.size()-1);
     }
@@ -36,9 +36,8 @@ public class IngredientReport {
         return ingredientList.stream().filter(n->! n.getExpDate().isAfter(LocalDate.now())).map(Ingredient::getPrice).reduce(0.0, Double::sum);
     }
     public String[] getLeast3Weights(){
-       String[] names = new ArrayList<>(ingredientList.stream().collect(Collectors.toMap(
-               Ingredient::getWeight, Ingredient::getName, (oldValue, newValue) -> oldValue+";"+newValue, TreeMap::new
-       )).values()).subList(0, 3).toArray(new String[0]);
-       return names;
+        return new ArrayList<>(ingredientList.stream().collect(Collectors.toMap(
+                Ingredient::getWeight, Ingredient::getName, (oldValue, newValue) -> oldValue+";"+newValue, TreeMap::new
+        )).values()).subList(0, 3).toArray(new String[0]);
     }
 }
