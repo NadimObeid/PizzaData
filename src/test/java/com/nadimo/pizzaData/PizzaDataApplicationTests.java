@@ -5,7 +5,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import parser.IngredientReport;
 import parser.InventoryParser;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,7 +16,7 @@ class PizzaDataApplicationTests {
 	public void testReadFile(){
 		InventoryParser data = new InventoryParser("/dummyinventory.csv");
 		List<String> actual = data.readFile();
-		String expected = "Cheese,Classic,8.99,12.5,Italy,No,,2-8°C,25 Dec 2023" ;
+		String expected = "Cheese,Dairy,8.99,12.5,Italy,No, ,5,2023-12-25" ;
 		assertEquals(expected,actual.get(0));
 	}
 	@Test
@@ -29,32 +28,32 @@ class PizzaDataApplicationTests {
 	@Test
 	public void testGetMostExpensiveIngredient(){
 		IngredientReport actual = new IngredientReport("/dummyinventory.csv");
-		String expected = "Shrimp;Calamari;Mussels";
+		String expected = "Pepperoni";
 		assertEquals(expected, actual.getMostExpensiveIngredient());
 	}
 	@Test
 	public void testGetTotalPrice(){
 		IngredientReport actual = new IngredientReport("/dummyinventory.csv");
-		double expected = 1656.61;
+		double expected = 491.715;
 		assertEquals(expected, actual.getTotalPrice(),0.0001);
 	}
 	@Test
 	public void testGetClosestExpiryDate(){
 		IngredientReport actual = new IngredientReport("/dummyinventory.csv");
-		String expected = "Pineapple";
+		String expected = "Pepperoni";
 		assertEquals(expected, actual.getClosestExpiryDate());
 	}
 	@Test
 	public void testGetPriceOfExpiredObjects(){
 		IngredientReport actual = new IngredientReport("/dummyinventory.csv");
-		double expected = 550.585;
+		double expected = 0;
 		assertEquals(expected, actual.getPriceOfExpiredObjects(),0.0001);
 	}
 	@Test
 	public void testGetLeast3Weights(){
 		IngredientReport actual = new IngredientReport("/dummyinventory.csv");
-		String expected = "[Gluten-Free, Cheese;Eggs;Wheat, Mushrooms]";
-		assertEquals(expected, Arrays.toString(actual.getLeast3Weights()));
+		String expected = "[Onions, Pineapple;Green Peppers, Olives]";
+		assertEquals(expected, actual.getLeast3Weights().toString());
 	}
 
 

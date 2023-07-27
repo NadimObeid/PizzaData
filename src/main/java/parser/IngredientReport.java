@@ -35,9 +35,9 @@ public class IngredientReport {
     public Double getPriceOfExpiredObjects(){
         return ingredientList.stream().filter(n->! n.getExpDate().isAfter(LocalDate.now())).map(Ingredient::getPrice).reduce(0.0, Double::sum);
     }
-    public String[] getLeast3Weights(){
+    public List<String> getLeast3Weights(){
         return new ArrayList<>(ingredientList.stream().collect(Collectors.toMap(
                 Ingredient::getWeight, Ingredient::getName, (oldValue, newValue) -> oldValue+";"+newValue, TreeMap::new
-        )).values()).subList(0, 3).toArray(new String[0]);
+        )).values()).subList(0, 3);
     }
 }

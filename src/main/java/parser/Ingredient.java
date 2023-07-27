@@ -1,7 +1,7 @@
 package parser;
 
+
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -14,7 +14,7 @@ public class Ingredient {
     private String Origin;
     private String CanCauseAllergy;
     private String TypeOfAllergy;
-    private String Temperature;
+    private double Temperature;
     private LocalDate ExpDate;
     private List<String> att;
 
@@ -27,7 +27,7 @@ public class Ingredient {
         setOrigin(att.get(4));
         setCanCauseAllergy(att.get(5));
         setTypeOfAllergy(att.get(6));
-        setTemperature(att.get(7));
+        setTemperature(Double.parseDouble(att.get(7)));
         setExpDate(att.get(8));
     }
 
@@ -61,13 +61,12 @@ public class Ingredient {
         TypeOfAllergy = !Objects.equals(typeOfAllergy, "") ?typeOfAllergy:"Unknown";
     }
 
-    public void setTemperature(String temperature) {
+    public void setTemperature(double temperature) {
         Temperature = temperature;
     }
 
     public void setExpDate(String expDate) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM uuuu");
-        ExpDate = Objects.equals(expDate, "") ?LocalDate.now():LocalDate.parse(expDate,formatter);
+        ExpDate = Objects.equals(expDate, "") ?LocalDate.now():LocalDate.parse(expDate);
     }
 
     public String getName() {
@@ -98,7 +97,7 @@ public class Ingredient {
         return TypeOfAllergy;
     }
 
-    public String getTemperature() {
+    public double getTemperature() {
         return Temperature;
     }
 
