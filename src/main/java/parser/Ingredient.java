@@ -1,12 +1,20 @@
 package parser;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-
+@Entity
 public class Ingredient {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String Name;
     private String Type;
     private double Price;
@@ -17,6 +25,9 @@ public class Ingredient {
     private double Temperature;
     private LocalDate ExpDate;
     private List<String> att;
+
+    public Ingredient() {
+    }
 
     public Ingredient(String attributes) {
         List<String> att = Arrays.stream(attributes.split(",", -1)).toList();
