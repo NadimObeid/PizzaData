@@ -1,6 +1,6 @@
-package Service;
+package server.Service;
 
-import parser.Ingredient;
+import server.parser.Ingredient;
 
 public interface IngredientService {
     public Ingredient saveIngredient(Ingredient ingredient);

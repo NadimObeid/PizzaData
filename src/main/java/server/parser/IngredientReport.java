@@ -1,4 +1,4 @@
-package parser;
+package server.parser;
 
 
 import java.time.LocalDate;
@@ -11,7 +11,8 @@ public class IngredientReport {
     private final List<Ingredient> ingredientList;
 
     public IngredientReport(String filePath) {
-        ingredientList = new InventoryParser(filePath).readFile().stream().map(Ingredient::new).toList();
+        ingredientList = null;
+        // new InventoryParser(filePath).readFile().stream().map(Ingredient::new).toList();
     }
 
     public Ingredient get(int i) {

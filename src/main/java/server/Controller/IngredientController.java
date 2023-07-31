@@ -1,15 +1,12 @@
-package Controller;
+package server.Controller;
 
-import Service.IngredientService;
+import server.Service.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import parser.Ingredient;
+import org.springframework.web.bind.annotation.*;
+import server.parser.Ingredient;
 
 @RestController
-@RequestMapping("/Ingredient")
+@RequestMapping("/ingredient")
 public class IngredientController {
     @Autowired
     private IngredientService ingredientService;
@@ -17,5 +14,9 @@ public class IngredientController {
     public String add(@RequestBody Ingredient ingredient){
         ingredientService.saveIngredient(ingredient);
         return "New Ingredient Added!";
+    }
+    @GetMapping("/hello")
+    public String hello(){
+        return "This is working";
     }
 }

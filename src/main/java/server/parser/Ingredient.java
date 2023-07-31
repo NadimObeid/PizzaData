@@ -1,4 +1,4 @@
-package parser;
+package server.parser;
 
 
 import jakarta.persistence.*;
@@ -22,12 +22,11 @@ public class Ingredient {
     private String TypeOfAllergy;
     private double Temperature;
     private LocalDate ExpDate;
-    private List<String> att;
 
     public Ingredient() {
     }
 
-    public Ingredient(String attributes) {
+ /*   public Ingredient(String attributes) {
         List<String> att = Arrays.stream(attributes.split(",", -1)).toList();
         setName(att.get(0));
         setType(att.get(1));
@@ -39,8 +38,7 @@ public class Ingredient {
         setTemperature(Double.parseDouble(att.get(7)));
         setExpDate(att.get(8));
     }
-
-
+*/
 
     public void setName(String name) {
         Name = !Objects.equals(name, "") ?name:"No Name";

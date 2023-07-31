@@ -2,8 +2,8 @@ package com.nadimo.pizzaData;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import parser.IngredientReport;
-import parser.InventoryParser;
+import server.parser.IngredientReport;
+import server.parser.InventoryParser;
 
 import java.util.List;
 

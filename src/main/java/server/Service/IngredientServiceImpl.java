@@ -1,9 +1,9 @@
-package Service;
+package server.Service;
 
-import Repository.PizzaRepository;
+import server.Repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import parser.Ingredient;
+import server.parser.Ingredient;
 
 @Service
 public class IngredientServiceImpl implements IngredientService{
