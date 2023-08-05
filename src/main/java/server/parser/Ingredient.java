@@ -1,12 +1,12 @@
 package server.parser;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+
 @Entity
 @Table(name = "Ingredients")
 public class Ingredient {
@@ -23,57 +23,32 @@ public class Ingredient {
     private double Temperature;
     private LocalDate ExpDate;
 
+    public Ingredient(@JsonProperty("Name") String name,
+                      @JsonProperty("Type") String type,
+                      @JsonProperty("Price") double price,
+                      @JsonProperty("Weight") double weight,
+                      @JsonProperty("Origin") String origin,
+                      @JsonProperty("CanCauseAllergy") String canCauseAllergy,
+                      @JsonProperty("TypeOfAllergy") String typeOfAllergy,
+                      @JsonProperty("Temperature") double temperature,
+                      @JsonProperty("ExpDate") LocalDate expDate) {
+        this.id = id;
+        Name = name;
+        Type = type;
+        Price = price;
+        Weight = weight;
+        Origin = origin;
+        CanCauseAllergy = canCauseAllergy;
+        TypeOfAllergy = typeOfAllergy;
+        Temperature = temperature;
+        ExpDate = expDate;
+    }
+
     public Ingredient() {
     }
 
- /*   public Ingredient(String attributes) {
-        List<String> att = Arrays.stream(attributes.split(",", -1)).toList();
-        setName(att.get(0));
-        setType(att.get(1));
-        setPrice(!Objects.equals(att.get(2), "") ?Double.parseDouble(att.get(2)):0);
-        setWeight(!Objects.equals(att.get(3), "") ?Double.parseDouble(att.get(3)):0);
-        setOrigin(att.get(4));
-        setCanCauseAllergy(att.get(5));
-        setTypeOfAllergy(att.get(6));
-        setTemperature(Double.parseDouble(att.get(7)));
-        setExpDate(att.get(8));
-    }
-*/
-
-    public void setName(String name) {
-        Name = !Objects.equals(name, "") ?name:"No Name";
-    }
-
-    public void setType(String type) {
-        Type = !Objects.equals(type, "") ?type:"Unknown";
-    }
-
-    public void setCanCauseAllergy(String canCauseAllergy) {
-        CanCauseAllergy = canCauseAllergy;
-    }
-
-    public void setPrice(double price) {
-        Price = Math.max(0,price);
-    }
-
-    public void setWeight(double weight) {
-        Weight = Math.max(0,weight);
-    }
-
-    public void setOrigin(String origin) {
-        Origin = !Objects.equals(origin, "") ?origin:"Unknown";
-    }
-
-    public void setTypeOfAllergy(String typeOfAllergy) {
-        TypeOfAllergy = !Objects.equals(typeOfAllergy, "") ?typeOfAllergy:"Unknown";
-    }
-
-    public void setTemperature(double temperature) {
-        Temperature = temperature;
-    }
-
-    public void setExpDate(String expDate) {
-        ExpDate = Objects.equals(expDate, "") ?LocalDate.now():LocalDate.parse(expDate);
+    public Integer getId() {
+        return id;
     }
 
     public String getName() {
@@ -85,7 +60,7 @@ public class Ingredient {
     }
 
     public double getPrice() {
-        return Price*Weight;
+        return Price;
     }
 
     public double getWeight() {
@@ -112,4 +87,43 @@ public class Ingredient {
         return ExpDate;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public void setType(String type) {
+        Type = type;
+    }
+
+    public void setPrice(double price) {
+        Price = price;
+    }
+
+    public void setWeight(double weight) {
+        Weight = weight;
+    }
+
+    public void setOrigin(String origin) {
+        Origin = origin;
+    }
+
+    public void setCanCauseAllergy(String canCauseAllergy) {
+        CanCauseAllergy = canCauseAllergy;
+    }
+
+    public void setTypeOfAllergy(String typeOfAllergy) {
+        TypeOfAllergy = typeOfAllergy;
+    }
+
+    public void setTemperature(double temperature) {
+        Temperature = temperature;
+    }
+
+    public void setExpDate(String expDate) {
+        ExpDate = LocalDate.parse(expDate);
+    }
 }

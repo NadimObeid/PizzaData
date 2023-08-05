@@ -1,18 +1,38 @@
 package server.parser;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import server.Controller.IngredientController;
+import server.Repository.PizzaRepository;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-public class IngredientReport {
-    private final List<Ingredient> ingredientList;
+@Component
+public class IngredientReport{
 
-    public IngredientReport(String filePath) {
-        ingredientList = null;
-        // new InventoryParser(filePath).readFile().stream().map(Ingredient::new).toList();
+    private List<Ingredient> ingredientList;
+
+    public IngredientReport(List<Ingredient> ingredients) {
+        ingredientList = ingredients;
+    }
+
+    public IngredientReport() {
+    }
+
+    public List<Ingredient> getIngredientList() {
+        return ingredientList;
+    }
+
+
+    public void setIngredientList(List<Ingredient> ingredientList) {
+        this.ingredientList = ingredientList;
     }
 
     public Ingredient get(int i) {
