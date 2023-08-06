@@ -47,6 +47,8 @@ public class Ingredient {
     public Ingredient() {
     }
 
+
+
     public Integer getId() {
         return id;
     }
