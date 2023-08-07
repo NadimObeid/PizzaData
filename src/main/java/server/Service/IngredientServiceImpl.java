@@ -1,8 +1,5 @@
 package server.Service;
 
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.domain.Sort;
 import server.Repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +30,7 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public Ingredient getByName(String Name) {
         try{
-        List<Ingredient> items = pizzaRepository.findAll().stream().filter(n-> Objects.equals(n.getName(), Name)).toList();
+        List<Ingredient> items = pizzaRepository.findAll().stream().filter(n-> !Objects.equals(n.getName(), Name)).toList();
         return items.get(0);
         }
         catch (IndexOutOfBoundsException i){
@@ -68,10 +65,16 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    public List<String> getLeast3Weights() {
+    public List<List<Ingredient>> getLeast3Weights() {
         return new ArrayList<>(getAllIngredients().stream().collect(Collectors.toMap(
                 Ingredient::getWeight, Ingredient::getName, (oldValue, newValue) -> oldValue + ";" + newValue, TreeMap::new
-        )).values()).subList(0, 3);
+        )).values()).stream().map(n->n.split(";")).map(n-> Arrays.stream(n).map(this::getByName).toList()).toList().subList(0,3);
+    }
+
+    @Override
+    public void consumeIngredient(String Name, Double Amount) {
+        Ingredient ingredient = getByName(Name);
+        ingredient.setWeight(ingredient.getWeight()-Amount>0?ingredient.getWeight()-Amount:0);
     }
 
 
