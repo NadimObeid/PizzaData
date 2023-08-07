@@ -20,7 +20,8 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public Ingredient saveIngredient(Ingredient ingredient) {
-        return pizzaRepository.save(ingredient);
+        if(getByName(ingredient.getName())==null) return pizzaRepository.save(ingredient);
+        return null;
     }
 
 
@@ -31,7 +32,13 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public Ingredient getByName(String Name) {
-        return pizzaRepository.findAll().stream().filter(n-> Objects.equals(n.getName(), Name)).toList().get(0);
+        try{
+        List<Ingredient> items = pizzaRepository.findAll().stream().filter(n-> Objects.equals(n.getName(), Name)).toList();
+        return items.get(0);
+        }
+        catch (IndexOutOfBoundsException i){
+            return null;
+        }
     }
 
     @Override
