@@ -35,12 +35,12 @@ public class IngredientController {
 
     @GetMapping("/getExpensiveItem")
     public Ingredient getMostExpensiveIngredient() {
-        return get(ingredientService.getMostExpensiveIngredient());
+        return ingredientService.getMostExpensiveIngredient().orElseThrow();
     }
 
     @GetMapping("/getClosestExpDate")
     public Ingredient getClosestExpiryDate() {
-        return get(ingredientService.getClosestExpiryDate());
+        return ingredientService.getClosestExpiryDate().orElseThrow();
     }
 
     @GetMapping("/getTotalPrice")
