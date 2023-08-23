@@ -1,5 +1,6 @@
 package server.Service;
 
+import org.springframework.http.ResponseEntity;
 import server.Repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,6 +76,16 @@ public class IngredientServiceImpl implements IngredientService {
     public void consumeIngredient(String Name, Double Amount) {
         Ingredient ingredient = getByName(Name);
         ingredient.setWeight(ingredient.getWeight()-Amount>0?ingredient.getWeight()-Amount:0);
+    }
+
+    @Override
+    public void remove(String name) {
+        pizzaRepository.delete(getByName(name));
+    }
+
+    @Override
+    public ResponseEntity<String> saveChanges(List<Ingredient> ingredients) {
+        return null;
     }
 
 

@@ -10,7 +10,7 @@ import server.parser.Ingredient;
 
 import java.util.List;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("/ingredient")
 public class IngredientController {
@@ -24,7 +24,7 @@ public class IngredientController {
     }
 
     @GetMapping("/get")
-    public Ingredient get(@RequestBody String name) {
+    public Ingredient get(@RequestBody @JsonProperty("Name") String name) {
         return ingredientService.getByName(name);
     }
 
@@ -60,6 +60,10 @@ public class IngredientController {
     @PatchMapping("/consume")
     public void consumeIngredient(@RequestBody @JsonProperty ObjectNode jsonNodes){
         ingredientService.consumeIngredient(jsonNodes.get("Name").asText(), jsonNodes.get("Amount").asDouble());
+    }
+    @DeleteMapping("/remove")
+    public void remove(@RequestBody @JsonProperty String name){
+        ingredientService.remove(name);
     }
 
 }

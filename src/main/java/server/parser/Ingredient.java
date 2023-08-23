@@ -8,7 +8,6 @@ import org.springframework.cglib.core.Local;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "Ingredients")
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +38,7 @@ public class Ingredient {
         Weight = weight;
         Origin = origin;
         CanCauseAllergy = canCauseAllergy;
-        TypeOfAllergy = typeOfAllergy;
+        TypeOfAllergy = CanCauseAllergy.equalsIgnoreCase("yes")?typeOfAllergy:"none";
         Temperature = temperature;
         ExpDate = expDate;
     }

@@ -38,8 +38,7 @@ class PizzaDataApplicationTests {
 	}
 	@Test
 	public void testGetTotalPrice(){
-		IngredientReport actual = new IngredientReport(new ArrayList<Ingredient>()) {
-		});
+		IngredientReport actual = new IngredientReport(new ArrayList<Ingredient>());
 		double expected = 491.715;
 		assertEquals(expected, actual.getTotalPrice(),0.0001);
 	}
