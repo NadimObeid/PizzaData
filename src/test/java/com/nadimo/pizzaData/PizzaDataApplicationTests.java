@@ -1,7 +1,6 @@
 package com.nadimo.pizzaData;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import server.parser.Ingredient;
@@ -60,13 +59,5 @@ class PizzaDataApplicationTests {
 		String expected = "[Onions, Pineapple;Green Peppers, Olives]";
 		assertEquals(expected, actual.getLeast3Weights().toString());
 	}
-	@Test
-	public void testIngredientReport(){
-		InventoryParser inventoryParser = new InventoryParser("dummyinventory.csv");
-		IngredientReport list1 = new IngredientReport(new ArrayList<Ingredient>());
-		String expected = "This test is wrong on purpose";
-		assertEquals(expected,list1.getIngredientList().toString());
-	}
-
 
 }

@@ -29,13 +29,13 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    public Ingredient getByName(String Name) {
+    public Ingredient getByName(String Name) throws NoSuchElementException {
         try{
         List<Ingredient> items = pizzaRepository.findAll().stream().filter(n-> Name.equals(n.getName())).toList();
         return items.get(0);
         }
         catch (IndexOutOfBoundsException i){
-            return null;
+            throw new NoSuchElementException();
         }
     }
 
