@@ -1,13 +1,8 @@
 package server.parser;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import server.Controller.IngredientController;
-import server.Repository.PizzaRepository;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

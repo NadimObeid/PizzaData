@@ -1,31 +1,28 @@
-package server.Order;
+package server.Purchase;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import server.pizza.Pizza;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
-public class Order {
+public class Purchase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private Double totalPrice;
+    @OneToMany
+    @JoinColumn(name="purchase_id")
     private List<Pizza> pizzaList;
     private String customerPhoneNumber;
-    private LocalDate orderDate;
+    private LocalDate purchaseDate;
 
 
-    protected Order(String customerPhoneNumber, List<Pizza> pizzaList){
+    protected Purchase(String customerPhoneNumber, List<Pizza> pizzaList){
         this.customerPhoneNumber = customerPhoneNumber;
-        this.orderDate = LocalDate.now();
+        this.purchaseDate = LocalDate.now();
         this.pizzaList= pizzaList;
         setTotalPrice();
 

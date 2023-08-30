@@ -1,7 +1,7 @@
 package server.Service;
 
 import org.springframework.http.ResponseEntity;
-import server.Repository.PizzaRepository;
+import server.Repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import server.parser.Ingredient;
@@ -14,25 +14,24 @@ import java.util.stream.Collectors;
 @Service
 public class IngredientServiceImpl implements IngredientService {
     @Autowired
-    private PizzaRepository pizzaRepository;
+    private IngredientRepository ingredientRepository;
 
     @Override
     public Ingredient saveIngredient(Ingredient ingredient) {
-        if(getByName(ingredient.getName())==null) return pizzaRepository.save(ingredient);
-        return null;
+        return ingredientRepository.save(ingredient);
     }
 
 
     @Override
     public List<Ingredient> getAllIngredients() {
-        return (ArrayList<Ingredient>) pizzaRepository.findAll();
+        return ingredientRepository.findAll();
     }
 
     @Override
     public Ingredient getByName(String Name) throws NoSuchElementException {
         try{
-        List<Ingredient> items = pizzaRepository.findAll().stream().filter(n-> Name.equals(n.getName())).toList();
-        return items.get(0);
+        List<Ingredient> ingredients = ingredientRepository.findAll().stream().filter(n-> Name.equals(n.getName())).toList();
+        return ingredients.get(0);
         }
         catch (IndexOutOfBoundsException i){
             throw new NoSuchElementException();
@@ -80,7 +79,7 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public void remove(String name) {
-        pizzaRepository.delete(getByName(name));
+        ingredientRepository.delete(getByName(name));
     }
 
     @Override

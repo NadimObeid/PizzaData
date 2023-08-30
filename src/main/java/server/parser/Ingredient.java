@@ -2,19 +2,19 @@ package server.parser;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import server.pizza.constants.ServingQuantity;
 
 import java.time.LocalDate;
 
 @Entity
+@Table(name="Ingredients")
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    @Enumerated(value=EnumType.STRING)
     private IngredientType type;
     private double servingQuantity;
     private double price;
@@ -27,7 +27,7 @@ public class Ingredient {
 
     public Ingredient(@JsonProperty("Name") String name,
                       @JsonProperty("Type") IngredientType type,
-                      @JsonProperty double servingSize,
+                      @JsonProperty("ServingQuantity") double servingQuantity,
                       @JsonProperty("Price") double price,
                       @JsonProperty("Weight") double weight,
                       @JsonProperty("Origin") String origin,
@@ -35,7 +35,7 @@ public class Ingredient {
                       @JsonProperty("TypeOfAllergy") String typeOfAllergy,
                       @JsonProperty("Temperature") double temperature,
                       @JsonProperty("ExpDate") LocalDate expDate) {
-        this.servingQuantity = servingSize;
+        this.servingQuantity = servingQuantity;
         this.id = id;
         this.name = name;
         this.type = type;
