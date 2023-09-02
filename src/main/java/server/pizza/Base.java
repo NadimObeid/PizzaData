@@ -6,14 +6,12 @@ import org.springframework.stereotype.Component;
 import server.pizza.constants.ServingQuantity;
 
 @Embeddable
-public record Base(@JsonProperty String baseIngredient, @JsonProperty @Enumerated ServingQuantity baseServingQuantity) {
+public record Base(@JsonProperty("name") String baseIngredient, @JsonProperty("servingQuantity") @Enumerated ServingQuantity baseServingQuantity) {
     public Double getQuantity(){
-        if(this.baseServingQuantity==ServingQuantity.TINY){
-            return 0.5;
-        } else if (this.baseServingQuantity==ServingQuantity.MEDIUM) {
-            return 1.0;
-        }else{
-            return 1.5;
-        }
+        return switch (baseServingQuantity){
+            case TINY -> 0.5;
+            case MEDIUM -> 1.0;
+            default -> 1.5;
+        };
     }
 }

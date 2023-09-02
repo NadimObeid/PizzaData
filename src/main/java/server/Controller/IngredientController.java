@@ -59,7 +59,7 @@ public class IngredientController {
     }
     @PatchMapping("/consume")
     public void consumeIngredient(@RequestBody @JsonProperty ObjectNode jsonNodes){
-        ingredientService.consumeIngredient(jsonNodes.get("Name").asText(), jsonNodes.get("Amount").asDouble());
+        ingredientService.consumeIngredient(jsonNodes.get("name").asText(), jsonNodes.get("amount").asDouble());
     }
     @DeleteMapping("/remove")
     public void remove(@RequestBody @JsonProperty String name){

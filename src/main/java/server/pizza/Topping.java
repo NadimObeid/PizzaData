@@ -1,8 +1,8 @@
 package server.pizza;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Embeddable;
 
 @Embeddable
-public record Topping(String toppingIngredient, Double multiplier) {
+public record Topping(String toppingIngredient, double multiplier) {
 
 }

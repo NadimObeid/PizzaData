@@ -1,5 +1,7 @@
 package server.pizza.constants;
 
+import jakarta.persistence.Enumerated;
+
 public enum PizzaSize {
     S(8.99),
     M(12.99),

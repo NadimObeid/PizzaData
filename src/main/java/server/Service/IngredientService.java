@@ -1,7 +1,5 @@
 package server.Service;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import server.parser.Ingredient;
@@ -20,7 +18,7 @@ public interface IngredientService {
     Double getTotalPrice();
     Double getPriceOfExpiredObjects();
     List<List<Ingredient>> getLeast3Weights();
-    void consumeIngredient(String Name, Double Amount);
+    void consumeIngredient(String name, double amount);
     void remove(String name);
     ResponseEntity<String> saveChanges(List<Ingredient> ingredients);
 

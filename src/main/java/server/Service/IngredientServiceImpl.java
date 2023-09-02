@@ -72,9 +72,11 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    public void consumeIngredient(String Name, Double Amount) {
+    public void consumeIngredient(String Name, double amount) {
         Ingredient ingredient = getByName(Name);
-        ingredient.setWeight(ingredient.getWeight()-Amount>0?ingredient.getWeight()-Amount:0);
+        double newIngredientWeight = ingredient.getWeight() - amount > 0 ? ingredient.getWeight() - amount : 0;
+        ingredient.setWeight(newIngredientWeight);
+        ingredientRepository.save(ingredient);
     }
 
     @Override

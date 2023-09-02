@@ -1,5 +1,6 @@
 package server.Purchase;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import server.pizza.Pizza;
 
@@ -7,32 +8,22 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@Table(name="Purchases")
 public class Purchase {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private Double totalPrice;
-    @OneToMany
-    @JoinColumn(name="purchase_id")
+    private Long id;
+    @ElementCollection
+    @CollectionTable(name = "pizzas", joinColumns = @JoinColumn(name = "purchase_id"))
     private List<Pizza> pizzaList;
     private String customerPhoneNumber;
     private LocalDate purchaseDate;
 
 
-    protected Purchase(String customerPhoneNumber, List<Pizza> pizzaList){
+    public Purchase(@JsonProperty("pizzas") List<Pizza> pizzaList, @JsonProperty("phoneNumber") String customerPhoneNumber){
+        this.pizzaList= pizzaList;
         this.customerPhoneNumber = customerPhoneNumber;
         this.purchaseDate = LocalDate.now();
-        this.pizzaList= pizzaList;
-        setTotalPrice();
-
-    }
-
-    private void setTotalPrice(){
-        totalPrice = pizzaList.stream().map(Pizza::getPrice).reduce(0.00,Double::sum);
-    }
-    public Double getTotalPrice() {
-        return totalPrice;
     }
 
     public List<Pizza> getPizzaList() {
