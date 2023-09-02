@@ -7,7 +7,7 @@ import jakarta.persistence.Enumerated;
 import server.pizza.constants.ServingQuantity;
 import server.pizza.constants.ServingStyle;
 @Embeddable
-public record Drizzle(@JsonProperty String drizzleIngredient, @JsonProperty @Enumerated ServingStyle drizzleStyle,@JsonProperty @Enumerated ServingQuantity drizzleQuantity) {
+public record Drizzle(@JsonProperty("drizzleName") String drizzleIngredient, @JsonProperty("drizzleStyle") @Enumerated ServingStyle drizzleStyle,@JsonProperty("drizzleQuantity") @Enumerated ServingQuantity drizzleQuantity) {
     public Double getQuantity(){
         return switch (drizzleQuantity){
             case TINY -> 0.5;
