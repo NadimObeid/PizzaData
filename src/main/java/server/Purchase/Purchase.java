@@ -18,6 +18,7 @@ public class Purchase {
     private List<Pizza> pizzaList;
     private String customerPhoneNumber;
     private LocalDate purchaseDate;
+    private double totalPrice;
 
 
     public Purchase(@JsonProperty("pizzas") List<Pizza> pizzaList, @JsonProperty("phoneNumber") String customerPhoneNumber){
@@ -34,5 +35,7 @@ public class Purchase {
         return customerPhoneNumber;
     }
 
-
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }

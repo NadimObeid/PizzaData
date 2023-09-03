@@ -66,7 +66,7 @@ public class PurchaseProcessor {
     }
 
     public double calculatePurchasePrice(Purchase purchase) throws IngredientUnavialableException {
-        double totalPurchasePrice = 0.0;
+        double totalPurchasePrice = purchase.getPizzaList().stream().mapToDouble(pizza->pizza.getSize().getPrice()).sum();
         List<Ingredient> availableIngredients = ingredientService.getAllIngredients();
         Map<String,Double> ingredientMapWithMultiplier =getIngredientMapWithMultiplier(purchase.getPizzaList());
         for(String requestedIngredientName:ingredientMapWithMultiplier.keySet()){

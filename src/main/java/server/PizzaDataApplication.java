@@ -2,8 +2,6 @@ package server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import server.pizza.Pizza;
 
 @SpringBootApplication
 public class PizzaDataApplication {

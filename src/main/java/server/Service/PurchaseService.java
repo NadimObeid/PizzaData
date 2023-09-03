@@ -18,6 +18,7 @@ public class PurchaseService {
     private PurchaseProcessor purchaseProcessor;
 
     public void processPurchaseRequest(Purchase purchaseRequested) throws IngredientUnavialableException {
+        savePurchasePrice(purchaseRequested);
         purchaseProcessor.consumePurchaseIngredientsIfAvailable(purchaseRequested);
         storePurchaseInTable(purchaseRequested);
     }
@@ -28,7 +29,9 @@ public class PurchaseService {
 
 
     }
-
+    private void savePurchasePrice(Purchase purchaseRequested) throws IngredientUnavialableException {
+        purchaseRequested.setTotalPrice(purchaseProcessor.calculatePurchasePrice(purchaseRequested));
+    }
     private Double getPurchasePrice(Purchase purchaseRequested) throws IngredientUnavialableException {
         return purchaseProcessor.calculatePurchasePrice(purchaseRequested);
     }
