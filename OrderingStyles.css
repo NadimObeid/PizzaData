@@ -1,0 +1,15 @@
+body{
+    display: flex;
+    justify-content: space-between;
+}
+select{
+    height: 30px;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+}
+select:hover{
+    background-color: rgb(224, 235, 236);
+}
+option{
+    border-radius: 1.2rem;
+}

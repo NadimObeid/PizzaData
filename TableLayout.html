@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="TableStyles.css">
+    </head>
+    
+    <body>
+        <div><img src="pizzapic.png" id="pizza"></div>
+        <div><img src="pizzapic2.png" id="pizza2"></div>
+            <main id="container">
+                <div id="container2">
+                    <div id="headings">
+                        <h1>Inventory</h1>
+                        <div id= "search">
+                            <input id ="searchBar"type="search" placeholder="Search..">
+                            <img src="search.png">
+                        </div>
+                    </div>
+                    
+                    <div id="table">
+                        <table id="ingTable">
+                            <thead>
+                                <tr>
+                                    <th id="topLeft">ID<span class="icon-triangle">&dtrif;</span></th>
+                                    <th>Name <span class="icon-triangle">&dtrif;</span></th>
+                                    <th>Type <span class="icon-triangle">&dtrif;</span></th>
+                                    <th>Price <span class="icon-triangle">&dtrif;</span></th>
+                                    <th>Weight <span class="icon-triangle">&dtrif;</span></th>
+                                    <th>Origin <span class="icon-triangle">&dtrif;</span></th>
+                                    <th>Can Cause Allergy <span class="icon-triangle">&dtrif;</span></th>
+                                    <th>Type Of Allergy <span class="icon-triangle">&dtrif;</span></th>
+                                    <th>Temperature <span class="icon-triangle">&dtrif;</span></th>
+                                    <th id="topRight">Expiry Date <span class="icon-triangle">&dtrif;</span></th>
+                                </tr>
+                            </thead>
+                            <tbody class="tableBody" id="tableBody">
+                            </tbody>
+                            </table>
+                    </div>
+                    </div>
+                </div>
+            <div  id = "adder">  
+                <p class="add"></p>
+                <input class="add" type="text" id = "Name" name="Name"  placeholder="Name">
+                <input class="add" type="text" id = "Type" name="Type" placeholder="Type">
+                <input class="add"type="number" id = "Price" name="Price" step="0.001" placeholder="Price">
+                <input class="add" type="number" id = "Weight" name="Weight" step="0.001" placeholder="Weight">
+                <input class="add" type="text" id = "Origin" name="Origin" placeholder="Origin">
+                <select class="add"id="CanCauseAllergy" name="CanCauseAllergy" placeholder="Can Cause Allergy">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                    
+                <input class="add" type="text" id = "TypeOfAllergy" name = "TypeOfAllergy" placeholder="Type Of Allergy">
+                <input class="add"type="number" id = "Temperature" name="Temperature" step="0.001" placeholder="Temperature">
+                <input class="add" type="date" id="ExpDate" name="ExpDate" placeholder="Expiry Date">
+                <button class="add"id="tableButton" onclick="add()" title="Add ingredient"><img src='plus-green.png'></button>
+            </div>
+                
+            <div class="Box" id="box">
+                <button id="edit" onclick="edit()">
+                  <p class="buttext">Edit Table</p>
+                </button>
+                <button id = "Total">
+                    <p class="buttext">Get Total Price</p>
+                </button>
+                <button id="least3">
+                    <p class="buttext">Get Least Three Weights</p>
+                </button>
+                <button id="expTotal">
+                    <p class="buttext">Get Total Price of Expired Objects</p>
+                </button>
+            </div>
+            <div id="editBox">
+                <button class="change" onclick="submit()">
+                    <p class="buttext"><img src='check.png' id="check" title="Save Changes"></p>
+                </button>
+                <button class="change" onclick="submit()" title="Discard Changes">
+                    <p class="buttext"><img src='cross.png' id="cross"></p>
+                </button>
+            </main>
+            <script src ="/program.js"></script>  
+    </body>
+    
+    
+    <footer>
+        <script>
+            let edit = ()=> {
+                let box = document.getElementById("box");
+                let box2 = document.getElementById("editBox");
+                let adds = document.getElementById("adder");
+                let table = document.getElementById("tableBody");
+                box.style.visibility= 'hidden';
+                box2.style.visibility= 'visible';
+                adds.style.visibility='visible';
+                table.contentEditable= true;
+            }
+            let submit = ()=> {
+                let box = document.getElementById("box");
+                let box2 = document.getElementById("editBox");
+                let adds = document.getElementById("adder");
+                let table = document.getElementById("tableBody");
+                box.style.visibility= 'visible';
+                box2.style.visibility= 'hidden';
+                adds.style.visibility='hidden';
+                table.contentEditable= false;
+                for(var i=0, row; row=table.rows[i]; i++){
+                    console.log(row)
+                }
+            }
+        </script>
+
+        <script>
+            let add = () => {
+    const name = document.getElementById("Name").value;
+    const type = document.getElementById("Type").value;
+    const price = document.getElementById("Price").value;
+    const weight = document.getElementById("Weight").value;
+    const origin = document.getElementById("Origin").value;
+    const canCauseAllergy = document.getElementById("CanCauseAllergy").value;
+    const typeOfAllergy = document.getElementById("TypeOfAllergy").value;
+    const temperature = document.getElementById("Temperature").value;
+    const expDate = document.getElementById("ExpDate").value;
+    const data = {
+        Name: name,
+        Type: type,
+        Price: price,
+        Weight: weight,
+        Origin: origin,
+        CanCauseAllergy: canCauseAllergy,
+        TypeOfAllergy: typeOfAllergy, 
+        Temperature: temperature,
+        ExpDate: expDate
+    };
+
+    let row = document.createElement("tr");
+    
+    let cellName = document.createElement("td");
+    cellName.textContent = name;
+    row.appendChild(cellName);
+
+    let cellType = document.createElement("td");
+    cellType.textContent = type;
+    row.appendChild(cellType);
+
+    let cellPrice = document.createElement("td");
+    cellPrice.textContent = price;
+    row.appendChild(cellPrice);
+
+    let table = document.getElementById("ingTable");
+    table.appendChild(row);
+
+    let adder = async () => {
+        try {
+            const response = await fetch("http://localhost:8080/ingredient/add", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+            console.log("Ingredient added:", response);
+        } catch (error) {
+            console.error("Error adding ingredient:", error);
+        }
+    };
+
+    adder();
+    setTimeout(() => {
+        window.location.reload();
+    }, 1000)
+};
+
+        </script>
+    </footer>
+</html>

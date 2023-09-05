@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="OrderingStyles.css" rel="stylesheet">
+    </head>
+    <body>
+        <select id="SIZE" placeholder="Size">
+            <option value="" disabled selected>Select size</option>
+            <option value="S">Small</option>
+            <option value="M">Medium</option>
+            <option value="L">Large</option>
+        </select>
+        <select id="BASE">
+            <option value="" disabled selected>Select base</option>
+        </select>
+        <select id="TOPPING">
+            <option value="" disabled selected>Select toppings</option>
+        </select>
+        <select id="DRIZZLE">
+            <option value="" disabled selected>Select drizzle</option>
+        </select>
+    </body>
+    <footer>
+        <script>
+        let getBase = async() =>{
+                try{
+                    let response = await fetch("http://localhost:8080/ingredient/getAll", {"headers":{"Access-Control-Allow-Origin":"http://localhost:8000/Table"}});
+                    let data = await response.json();
+                    return data
+                }
+    
+                catch(error){
+                    console.error("Error fetching data:", error);
+                    return null;
+                }
+            }   
+            const PrintData = async () =>{
+                ingredients = await getBase();
+                ingredients = ingredients.filter(ingredient => ingredient.Type !== 'BASE');
+                ingredients.forEach(ingredient => {
+                console.log(ingredient.Name);
+                });
+            }
+            PrintData();
+        </script>
+    </footer>
+</html>

@@ -1,0 +1,266 @@
+body{
+    background-color: hsla(205, 100%, 58%, 0.189);;
+    background-repeat: round;
+    overflow: hidden;
+    padding-top: 100px;
+   
+}
+main{
+    box-sizing: border-box;
+}
+[contenteditable] {
+    outline: 0px solid transparent;
+}
+thead{
+    position: sticky;
+}
+#headings{
+    border: 1px solid black;
+    border-top-left-radius: 20px;
+    border-top-Right-radius: 20px;
+    background-color: rgba(28, 176, 184, 0.863);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#headings img{
+    width:1rem;
+    height: 1rem;
+}
+h1{
+    position: relative;
+}
+.hide{
+    opacity: 0;
+    transform: translateX(100%);
+    }
+.hide{
+    --delay: .1s;
+    transition: .5s ease-in-out;
+}
+#headings #search{
+    height: 10%;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+    background-color: rgba(245, 245, 245, 0.776);
+    position: relative;
+    padding:0.8rem;
+    transition: .2s;
+}
+#headings #search:hover{
+    width:35%
+}
+#headings #search input{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0 .5rem 0 .3rem;
+}
+#ingTable{
+    max-height: 100px;
+    border-collapse: collapse ;
+    overflow-y: scroll;
+}
+th{
+    text-align: center;
+    background-color: rgba(63, 136, 165, 0.737);
+    cursor: pointer;
+    position: sticky;
+}
+#tableBody{
+    width: 85%;
+    max-height: 45%;
+    margin: .8rem auto;
+}
+.row{
+    height: 40px;
+}
+tbody tr:nth-child(even){
+    background-color: rgba(255, 255, 255, 0.675);
+}
+.row:nth-child(odd){
+    background-color: rgba(255, 255, 255, 0.595);
+}
+.row:hover{
+    background-color: antiquewhite;
+    transform: scale(1.03);
+}
+.row.hide{
+    padding: 0;
+    width: -20;
+    height: -20;
+}
+.ingredients{
+    text-align: center;  
+}
+
+.row.hide td p{
+    width: 0px;
+    height: 0px;
+    font-size: 0 /0;
+    padding: 0;
+}
+#box{
+    display: flex;
+    border: 2px solid black;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    justify-content: space-evenly;
+    height: 400px;
+    width: 200px;
+    background-color: aliceblue;
+    border-radius: 20px;
+    left: 90px;
+    z-index: 1;
+}
+input, select{
+    width: 100px;
+    height: 30px;
+    border: 2px solid rgb(57, 56, 56);
+    border-radius: 20px;
+    border-collapse: separate;
+}
+
+#tableButton{
+    border-radius: 50px;
+    border-color: transparent;
+    background: transparent;
+}
+#tableButton span:hover{
+    border-color: greenyellow;
+    background-color:  rgb(21, 185, 27);
+    
+}
+#tableButton span{
+    border: 2px solid rgb(21, 185, 27);
+    background-color: greenyellow;
+    color: green;
+    border-radius: 50px;
+    display: inline-block;
+    width: 1.3rem;
+    height: 1.3rem;
+    text-align: center;
+}
+#container{
+    display: flex;
+    justify-content:center;
+}
+#container2{
+    transform: translateX(60px);
+}
+#editBox{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 2px solid black;
+    background-color: aliceblue;
+    position: absolute;
+    right: 250px;
+    padding: 10px;
+    border-radius: 30%;
+    width: 200px;
+    visibility: hidden;
+}
+
+.change{
+    background-color: aliceblue;
+    border: none;
+}
+.change #check, .change #cross{
+    width: 50px;
+    height: 50px;
+}
+.change:hover{
+    transform: scale(1.10);
+}
+#pizza{
+    position:absolute;
+    top: -130px;
+    left: -120px;
+    width: 550px;
+    height: 450px;
+    transform: rotate(300deg);
+    opacity: 75%;
+    z-index: -1;
+}
+#adder{
+    position: absolute;
+    border: 2px solid black;
+    height: 50px;
+    width: 1200px;
+    background-color: rgba(28, 176, 184, 0.863);
+    bottom: 230px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 20px;
+    visibility: hidden;
+}
+.add{
+    text-align: center;
+    border: none;
+    outline: none;
+}
+.add img{
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid green;
+    border-radius: 50%;
+    padding: 0.3rem;
+    background-color: green;
+    cursor: pointer;
+}
+.add:hover {
+    transform: scale(1.03);
+}
+#pizza2{
+    position: absolute;
+    bottom: -90px;
+    right:-80px;
+    width: 450px;
+    height:450px;
+    transform: rotate(75deg);
+    opacity: 75%;
+    z-index: -1;
+}
+
+thead span.icon-triangle{
+    border: 1px;
+    border-radius: 50px;
+    width: 1.3rem;
+    height: 1.3rem;
+    display: inline-block;
+}
+thead span.icon-triangle:hover{
+    background-color: goldenrod;
+    opacity: 56%;
+}
+thead th.asc span.icon-triangle{
+    transform: rotate(180deg);
+    animation: ease-in;
+    animation-duration: 0.3s;
+    color: gold;
+}
+
+#table::-webkit-scrollbar {
+    width: 20px;
+}
+  
+#table::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+  
+#table::-webkit-scrollbar-thumb {
+    background: rgba(0, 217, 255, 0.872);
+    border-radius: 10px;
+}
+#newingredients{
+    border: 1px solid blue;
+    height: 200px;
+}
